@@ -318,6 +318,45 @@ src="https://www.facebook.com/tr?id=1376271230773768&ev=PageView&noscript=1"/>
 </script>
 
 <!-- ===============================
-     CHATBOT CCN (carga desde GitHub raw, sin caché de ningún tipo)
+     CHATBOT CCN (Clay) — carga desde GitHub raw, sin caché de ningún tipo
+
+     Antes esto era una etiqueta <script src> apuntando a jsDelivr, y el
+     comentario de arriba ya mentía: jsDelivr cachea la rama hasta 12
+     horas, y encima sirve el archivo con caché de navegador de 7 días.
+     El 21/08/2026 eso dejó a Clay roto en la web durante horas después
+     de que el arreglo ya estuviera hecho y subido.
+
+     Bajándolo con fetch y sin caché, un arreglo se ve en la visita
+     siguiente. Si GitHub falla, cae solo a jsDelivr: más lento en
+     enterarse de un cambio, pero no se cae nunca.
+
+     Es el mismo camino que ya usa la web de Mateo.
      =============================== -->
-<script src="https://cdn.jsdelivr.net/gh/algebraparatodos/ccn@main/chatbot/ccn-chatbot.js"></script>
+<script>
+(function () {
+  var RAW = "https://raw.githubusercontent.com/algebraparatodos/ccn/main/chatbot/ccn-chatbot.js";
+  var CDN = "https://cdn.jsdelivr.net/gh/algebraparatodos/ccn@main/chatbot/ccn-chatbot.js";
+
+  function colgar(script) {
+    // documentElement siempre existe, incluso mientras se lee el <head>.
+    (document.head || document.documentElement).appendChild(script);
+  }
+
+  fetch(RAW + "?nocache=" + Date.now(), { cache: "no-store" })
+    .then(function (res) {
+      if (!res.ok) throw new Error("GitHub respondio " + res.status);
+      return res.text();
+    })
+    .then(function (codigo) {
+      var s = document.createElement("script");
+      s.textContent = codigo;
+      colgar(s);
+    })
+    .catch(function (err) {
+      console.warn("Clay: no se pudo bajar de GitHub, se usa el CDN.", err);
+      var s = document.createElement("script");
+      s.src = CDN;
+      colgar(s);
+    });
+})();
+</script>
