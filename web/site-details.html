@@ -1,72 +1,13 @@
-<!-- =========================================================
-     CCN – SITE DETAILS (Kajabi)
-     =========================================================
-
-     Esto es lo que va pegado en el campo "Site Details" de Kajabi,
-     y desde el 21/08/2026 es TODO lo que va: el resto se bajó a
-     archivos de este repo y lo sirve el Worker.
-
-     Antes acá vivían trescientas líneas —tipografías, cookies,
-     ManyChat, el arreglo de anclas, la traducción de la página de
-     descargas y el chatbot—, y para cambiar cualquier cosa había que
-     entrar a Kajabi y editar a mano, sin historial y sin poder ver qué
-     cambió.
-
-     LO QUE SE QUEDA ACÁ, Y POR QUÉ CADA COSA
-     -----------------------------------------
-
-     1. Los dos <meta> de verificación. Los robots de Pinterest y de
-        Facebook que comprueban el dominio NO ejecutan JavaScript: si
-        se inyectaran, la verificación del dominio se rompería.
-
-     2. El píxel de Meta. Podría moverse, pero es el único bloque donde
-        un fallo silencioso cuesta plata: si el Worker no respondiera,
-        se perdería la atribución de los anuncios sin que nadie se
-        entere. Y es código que no se cambia nunca. Se queda como
-        seguro barato.
-
-     3. Las dos etiquetas que apuntan al Worker.
-
-     El <script> lleva `defer`, y eso no es decorativo: hace que el
-     código corra después de que el HTML esté leído y ANTES de que se
-     dispare DOMContentLoaded, o sea igual que cuando estaba pegado
-     acá. Sin `defer` cambiaría el momento en que corre todo.
-
-     PARA CAMBIAR CUALQUIER OTRA COSA NO SE ENTRA ACÁ
-     ------------------------------------------------
-     Se edita el archivo en este repo y se hace push. El cambio se ve
-     en la web dentro del minuto siguiente (el Worker cachea 60
-     segundos, a propósito).
-
-       Tipografías y estilos ....... web/estilos.css
-       Aviso de cookies ............ web/partes/10-cookies.js
-       ManyChat .................... web/partes/20-manychat.js
-       Anclas y header sticky ...... web/partes/30-anclas.js
-       Traducción de /downloads/ ... web/partes/40-downloads.js
-       El chatbot Clay ............. chatbot/ccn-chatbot.js
-     ========================================================= -->
-
-<!-- ===============================
-     META / VERIFICACIONES
-     (se quedan acá: los robots que las leen no ejecutan JavaScript)
-     =============================== -->
 <meta name="p:domain_verify" content="2f7ae28d5e73fd06172b24bbfa6c81eb" />
 <meta name="facebook-domain-verification" content="u8nmkqy5igtdan77u3h6om6i1z8t3f" />
 
-<!-- ===============================
-     ESTILOS DEL SITIO
-     Sale de web/estilos.css, servido por el Worker.
-
-     Va como <link> y no inyectado con JavaScript a propósito: si el
-     CSS se inyectara con JS, la página se dibujaría un instante con la
-     tipografía por defecto y después saltaría a la de la escuela.
-     =============================== -->
+<!-- Estilos y tipografias. Sale de web/estilos.css del repo ccn.
+     Va como <link> a proposito: inyectado por JavaScript, la pagina
+     se dibujaria un instante con la letra por defecto. -->
 <link rel="stylesheet" href="https://ccn-chatbot.agaparatodos.workers.dev/estilos.css">
 
-<!-- ===============================
-     META PIXEL
-     Se queda pegado acá a propósito. Ver la explicación de arriba.
-     =============================== -->
+<!-- META PIXEL. Se queda pegado aca a proposito: es el unico bloque
+     donde un fallo silencioso cuesta atribucion de anuncios. -->
 <script>
 !function(f,b,e,v,n,t,s){
 if(f.fbq)return;
@@ -104,11 +45,9 @@ document.addEventListener('click', function (e) {
 src="https://www.facebook.com/tr?id=1376271230773768&ev=PageView&noscript=1"/>
 </noscript>
 
-<!-- ===============================
-     TODO LO DEMÁS
-     Cookies + ManyChat + anclas + traducción de descargas + Clay,
-     armado por el Worker a partir de los archivos de este repo.
-
-     El `defer` es obligatorio: ver la explicación de arriba.
-     =============================== -->
+<!-- Cookies + ManyChat + anclas + traduccion de /downloads/ + Clay.
+     Lo arma el Worker con los archivos del repo ccn.
+     El `defer` NO es decorativo: hace que corra despues de leer el HTML
+     y antes de DOMContentLoaded, igual que cuando estaba pegado aca.
+     Si se borra, el aviso de cookies deja de aparecer. -->
 <script src="https://ccn-chatbot.agaparatodos.workers.dev/web.js" defer></script>
