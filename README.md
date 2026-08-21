@@ -1,55 +1,127 @@
 # ccn — lo que la web de Cerámica con Nati carga desde GitHub
 
 **Este repo es público a propósito, y tiene que seguir siéndolo.**
+`chatbot/inscripcion.md` lo lee el navegador directamente, sin pasar por
+ningún servidor, y ni jsDelivr ni `raw.githubusercontent.com` sirven repos
+privados. El día que este repo se cierre, el botón de inscripción de la
+landing se queda con las fechas del *fallback* — **sin ningún error
+visible**.
 
-`ceramicaconnati.com` no aloja estos archivos: los baja de acá cada vez que
-alguien abre la web. Ni jsDelivr ni `raw.githubusercontent.com` sirven
-repos privados, así que el día que este repo se cierre, la web se queda sin
-chatbot y sin botón de reserva — **sin ningún error visible**.
+## Desde el 21/08/2026 casi nada se pega en Kajabi
+
+Antes, el campo "Site Details" de Kajabi tenía **trescientas líneas**
+pegadas a mano: tipografías, gestor de cookies, píxel de Meta, ManyChat, el
+arreglo de anclas, la traducción de la página de descargas y el chatbot.
+Cambiar una coma significaba entrar a Kajabi, editar dentro de un cuadro de
+texto, y cruzar los dedos: sin historial, sin poder ver qué cambió, y sin
+manera de volver atrás.
+
+Ahora **en Kajabi quedan tres cosas** —los dos `<meta>` de verificación, el
+píxel de Meta, y dos etiquetas que apuntan al Worker— y todo lo demás vive
+acá y se cambia con un `git push`.
+
+```
+<link rel="stylesheet" href="https://ccn-chatbot.agaparatodos.workers.dev/estilos.css">
+<script src="https://ccn-chatbot.agaparatodos.workers.dev/web.js" defer></script>
+```
+
+El bloque exacto que está pegado en Kajabi se guarda en
+`web/site-details.html`. **Ahora sí es la fuente**, no una copia: como ya
+casi no cambia, lo que hay ahí es lo que hay allá.
 
 ## Qué hay y quién lo usa
 
 | Archivo | Quién lo carga |
 |---|---|
-| `chatbot/ccn-chatbot.js` | La web, vía `cdn.jsdelivr.net/gh/algebraparatodos/ccn@main/`. Es la burbuja de Clay. |
-| `cta-reserva.js` | La web, por el mismo camino. Decide qué botón de inscripción mostrar según la fecha. |
+| `web/estilos.css` | El Worker, y lo sirve como `/estilos.css`. Tipografías, escalas de móvil y resets del tema. |
+| `web/partes/00-base.js` | El Worker. Ayudas comunes que usan las demás partes. |
+| `web/partes/10-cookies.js` | El Worker. El aviso de cookies. |
+| `web/partes/20-manychat.js` | El Worker. Los dos scripts de ManyChat. |
+| `web/partes/30-anclas.js` | El Worker. El scroll con aire para el header pegajoso. |
+| `web/partes/40-downloads.js` | El Worker. Traduce "Files" y "Download All" en `/downloads/`. |
+| `chatbot/ccn-chatbot.js` | El Worker, como última parte del paquete. Es la burbuja de Clay. |
+| `cta-reserva.js` | **La web, directo por jsDelivr.** No está en el Site Details: está pegado en un bloque de código de la landing. |
 | `chatbot/inscripcion.md` | **Dos** consumidores: `cta-reserva.js` desde el navegador, y el Worker de Clay desde el servidor. |
+| `web/site-details.html` | Nadie lo carga. Es lo que está pegado en Kajabi, guardado acá para tener historial. |
 
-## Cómo lo carga la web, y por qué importa
+`cta-reserva.js` quedó como estaba a propósito: vive en otra parte de
+Kajabi, no en el Site Details, y mudarlo sin saber exactamente en qué página
+está pegado era arriesgar el botón de inscripción para no ganar nada.
 
-**El Site Details entero de Kajabi está guardado acá, en
-`web/site-details.html`.** No sólo el trozo del chatbot: el bloque completo,
-tal cual está pegado en la web —tipografías, gestor de cookies, pixel de
-Meta, ManyChat, el arreglo de anclas y la traducción de la página de
-descargas—.
+## Por qué pasa por el Worker y no directo por GitHub
 
-Vive en el repo por dos motivos. Uno, si sólo existiera dentro del editor de
-Kajabi nadie sabría qué había el día que se borre. Y dos, para poder ver en
-un `git diff` qué cambió exactamente antes de pegarlo: es la única forma de
-tocar ese bloque sin cruzar los dedos.
+Tres motivos concretos, ninguno estético:
 
-**Es una copia, no la fuente**: lo que manda es lo que está pegado en Kajabi.
-Si se edita allá, hay que traerlo acá.
+1. **El tipo de contenido.** `raw.githubusercontent.com` sirve todo como
+   texto plano, y un navegador rechaza un CSS que no venga declarado como
+   `text/css`. Sin el Worker, las tipografías no se podían cargar con un
+   `<link>`.
+2. **La caché.** jsDelivr se queda hasta 12 horas con la rama vieja y encima
+   manda una caché de navegador de 7 días. El 21/08/2026 eso dejó a Clay
+   roto en la web durante horas **después** de que el arreglo ya estuviera
+   subido, y purgar a mano no lo destrabó. El Worker manda las cabeceras que
+   queremos: **un cambio se ve dentro del minuto**.
+3. **Los repos privados.** Ni jsDelivr ni raw sirven repos privados, y poner
+   un token de GitHub en el navegador sería regalarlo — queda a la vista de
+   cualquiera que abra el inspector. Con el Worker en el medio, el token se
+   queda del lado del servidor.
 
-**Baja el widget por `raw.githubusercontent.com` con `?nocache=`, no por
-jsDelivr**, y eso no es un capricho. El 21/08/2026 se arregló un fallo que
-dejaba a Clay invisible, se empujó el arreglo, y **la web siguió rota**:
-jsDelivr cachea la rama hasta 12 horas y el archivo se sirve además con una
-caché de navegador de 7 días. Purgar a mano no lo destrabó. Bajándolo de
-GitHub sin caché, un arreglo se ve en la visita siguiente.
+Ese tercer punto es el que deja el camino abierto: en el Worker cada parte
+declara de qué repo sale, y una que salga de un repo privado se baja con el
+mismo token de sólo lectura que ya usa la base de conocimiento. **Hoy todas
+son públicas**, porque nada de lo que corre en el navegador es sensible: el
+navegador lo enseña igual, esté el repo abierto o cerrado. Lo único que
+esconde un repo privado es el historial.
 
-Si GitHub falla, el bloque cae solo a jsDelivr: más lento en enterarse de
-un cambio, pero no se cae nunca.
+## Cuánto tarda en verse un cambio
 
-Es el mismo camino que ya usaba la web de Mateo, en `algebraparatodos.com`.
+Hasta un minuto. El Worker cachea 60 segundos y le pide al navegador que
+haga lo mismo. Es a propósito: sin eso, cada visita a la web sería un pedido
+a GitHub.
 
-### El widget no puede dar por supuesto dónde lo pegan
+Si hay que ver un cambio **ya**, se recarga con Ctrl+F5 después de ese
+minuto.
 
-La etiqueta vive en el `<head>`. Todo lo que toque `document.body` va detrás
-de una espera al DOM: si no, corre antes de que el `<body>` exista y falla
-sobre `null`. Y falla en silencio de la peor manera, porque los estilos se
-inyectan en el `<head>` unas líneas antes y sí funcionan, así que todo
-parece haber ido bien. Fue exactamente el fallo del 21/08/2026.
+## Si GitHub se cae
+
+El Worker guarda una "última copia buena" con caché de un año. Si GitHub no
+responde o devuelve un error, sirve esa en vez de dejar el sitio sin estilos
+y sin chatbot. Una copia de ayer es mejor que una página rota.
+
+## Al tocar cualquier parte, comprobar la sintaxis
+
+Las partes se pegan una detrás de otra en un solo archivo. La contra de eso
+es real: **un error de sintaxis en una parte tumba a todas**, incluido el
+chatbot. Antes de hacer push:
+
+```
+node --check web/partes/10-cookies.js
+```
+
+## Cuidado con los `<script>` creados a mano
+
+Una etiqueta `<script src>` escrita en el HTML se puede sincronizar; uno
+creado con JavaScript es **asíncrono siempre**, y `defer` no le hace nada.
+Por eso `10-cookies.js` espera a que la librería haya cargado antes de
+llamar a `cookieconsent.run()`: sin esa espera, la variable global todavía
+no existe y el aviso de cookies no aparece nunca, sin error visible.
+
+Para eso está `CCN.cargarScript()` en `00-base.js`, que devuelve una promesa.
+
+## El widget no puede dar por supuesto dónde lo pegan
+
+Todo lo que toque `document.body` va detrás de una espera al DOM. Con
+`defer` el `<body>` ya existe, pero la etiqueta se pega a mano en Kajabi y
+nada garantiza que el `defer` sobreviva a la próxima edición. Fue
+exactamente el fallo del 21/08/2026, y falla de la peor manera: los estilos
+se inyectan en el `<head>` unas líneas antes y sí funcionan, así que todo
+parece haber ido bien.
+
+## Para cambiar las fechas de inscripción
+
+Editar las líneas `FECHA_APERTURA_INSCRIPCION_COMPLETA` y
+`FECHA_CIERRE_INSCRIPCION_COMPLETA` de `chatbot/inscripcion.md` y hacer
+push. No hay que tocar `cta-reserva.js`: las lee de ahí.
 
 ## Por qué acá no está el conocimiento del bot
 
@@ -61,12 +133,6 @@ lee con un token de sólo lectura.
 también el navegador, que no puede llevar un token encima. Son fechas de
 inscripción, no dato sensible, y tenerlo en un solo lugar evita dos copias
 que se desincronicen.
-
-## Para cambiar las fechas de inscripción
-
-Editar las líneas `FECHA_APERTURA_INSCRIPCION_COMPLETA` y
-`FECHA_CIERRE_INSCRIPCION_COMPLETA` de `chatbot/inscripcion.md` y hacer
-push. No hay que tocar `cta-reserva.js`: las lee de acá.
 
 ## Sobre el historial
 
