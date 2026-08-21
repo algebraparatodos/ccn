@@ -14,8 +14,29 @@
    sirve los archivos como texto plano, y un navegador rechaza un CSS
    cuyo tipo no sea text/css. El Worker lo declara bien.
 
-   Las tipografías siguen alojadas en Kajabi (las URL /resource_redirect
-   de abajo). Sólo se mudó la hoja de estilos, no los archivos .ttf.
+   ── OJO CON LAS DIRECCIONES DE LAS FUENTES ───────────────
+   Van completas, con https://www.ceramicaconnati.com adelante, y NO
+   se pueden acortar a /resource_redirect/... como estaban cuando
+   esto vivía pegado en Kajabi.
+
+   El motivo: en CSS, una dirección que empieza con / se resuelve
+   contra el origen de LA HOJA DE ESTILOS, no contra el de la página.
+   Mientras el CSS estaba dentro del HTML las dos cosas eran el mismo
+   sitio y funcionaba. Servido desde el Worker, /resource_redirect/
+   pasa a apuntar al Worker, que no tiene ninguna tipografía, y el
+   sitio entero se cae a la letra por defecto. Comprobado el
+   21/08/2026: se rompen las cuatro a la vez.
+
+   Puestas completas y apuntando al mismo dominio que la página, el
+   navegador las trata como propias y no pide permisos de CORS —cosa
+   que importa, porque Kajabi sirve estos archivos SIN la cabecera
+   Access-Control-Allow-Origin, así que un pedido de otro origen se
+   rechazaría—.
+
+   La excepción conocida: si el sitio se mira por un dominio de
+   previsualización de Kajabi (*.mykajabi.com), las tipografías sí
+   quedan en otro origen y se cae a la letra por defecto. En la web
+   de verdad no pasa.
    ========================================================= */
 
 /* ===============================
@@ -23,19 +44,19 @@
    =============================== */
 @font-face {
   font-family: 'RecoletaAlt';
-  src: url('/resource_redirect/downloads/file-uploads/sites/2148553437/themes/2161145720/downloads/1a21464-e040-e75a-d2a-2d6c520b4fe7_RecoletaAlt-Regular.ttf') format('truetype');
+  src: url('https://www.ceramicaconnati.com/resource_redirect/downloads/file-uploads/sites/2148553437/themes/2161145720/downloads/1a21464-e040-e75a-d2a-2d6c520b4fe7_RecoletaAlt-Regular.ttf') format('truetype');
 }
 @font-face {
   font-family: 'FontTwo';
-  src: url('/resource_redirect/downloads/file-uploads/sites/2148553437/themes/2161145720/downloads/1d35010-4e70-27c-80e3-4ddca52e470a_GochiHand-Regular.ttf') format('truetype');
+  src: url('https://www.ceramicaconnati.com/resource_redirect/downloads/file-uploads/sites/2148553437/themes/2161145720/downloads/1d35010-4e70-27c-80e3-4ddca52e470a_GochiHand-Regular.ttf') format('truetype');
 }
 @font-face {
   font-family: 'Apercu';
-  src: url('/resource_redirect/downloads/file-uploads/sites/2148553437/themes/2161145720/downloads/ebff7d1-6bbf-58d-125-78c051f073_Apercu_Regular.ttf') format('truetype');
+  src: url('https://www.ceramicaconnati.com/resource_redirect/downloads/file-uploads/sites/2148553437/themes/2161145720/downloads/ebff7d1-6bbf-58d-125-78c051f073_Apercu_Regular.ttf') format('truetype');
 }
 @font-face {
   font-family: 'RecoletaMedium';
-  src: url('/resource_redirect/downloads/file-uploads/sites/2148553437/themes/2161145720/downloads/54ea03b-fab3-a17-bd7-d2cb0b352e_RecoletaAlt-Medium.ttf') format('truetype');
+  src: url('https://www.ceramicaconnati.com/resource_redirect/downloads/file-uploads/sites/2148553437/themes/2161145720/downloads/54ea03b-fab3-a17-bd7-d2cb0b352e_RecoletaAlt-Medium.ttf') format('truetype');
 }
 
 /* ===============================
