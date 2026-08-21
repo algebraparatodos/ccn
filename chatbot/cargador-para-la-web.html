@@ -1,0 +1,35 @@
+<!-- ============================================================
+     Clay, el asistente de Cerámica con Nati.
+     Se baja el widget desde GitHub en cada visita y sin caché, para
+     que un arreglo se vea al instante en vez de esperar horas a que
+     el CDN se entere. Si GitHub falla, cae al CDN: más lento en
+     actualizarse, pero no se cae nunca.
+     ============================================================ -->
+<script>
+(function () {
+  var RAW = "https://raw.githubusercontent.com/algebraparatodos/ccn/main/chatbot/ccn-chatbot.js";
+  var CDN = "https://cdn.jsdelivr.net/gh/algebraparatodos/ccn@main/chatbot/ccn-chatbot.js";
+
+  function colgar(script) {
+    // documentElement siempre existe, incluso mientras se lee el <head>.
+    (document.head || document.documentElement).appendChild(script);
+  }
+
+  fetch(RAW + "?nocache=" + Date.now(), { cache: "no-store" })
+    .then(function (res) {
+      if (!res.ok) throw new Error("GitHub respondio " + res.status);
+      return res.text();
+    })
+    .then(function (codigo) {
+      var s = document.createElement("script");
+      s.textContent = codigo;
+      colgar(s);
+    })
+    .catch(function (err) {
+      console.warn("Clay: no se pudo bajar de GitHub, se usa el CDN.", err);
+      var s = document.createElement("script");
+      s.src = CDN;
+      colgar(s);
+    });
+})();
+</script>

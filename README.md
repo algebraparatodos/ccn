@@ -15,6 +15,33 @@ chatbot y sin botón de reserva — **sin ningún error visible**.
 | `cta-reserva.js` | La web, por el mismo camino. Decide qué botón de inscripción mostrar según la fecha. |
 | `chatbot/inscripcion.md` | **Dos** consumidores: `cta-reserva.js` desde el navegador, y el Worker de Clay desde el servidor. |
 
+## Cómo lo carga la web, y por qué importa
+
+El bloque que hay que pegar en el `<head>` de Kajabi está guardado acá, en
+`chatbot/cargador-para-la-web.html`. Vive en el repo a propósito: si sólo
+existiera dentro del editor de Kajabi, nadie sabría qué había el día que se
+borre.
+
+**Baja el widget por `raw.githubusercontent.com` con `?nocache=`, no por
+jsDelivr**, y eso no es un capricho. El 21/08/2026 se arregló un fallo que
+dejaba a Clay invisible, se empujó el arreglo, y **la web siguió rota**:
+jsDelivr cachea la rama hasta 12 horas y el archivo se sirve además con una
+caché de navegador de 7 días. Purgar a mano no lo destrabó. Bajándolo de
+GitHub sin caché, un arreglo se ve en la visita siguiente.
+
+Si GitHub falla, el bloque cae solo a jsDelivr: más lento en enterarse de
+un cambio, pero no se cae nunca.
+
+Es el mismo camino que ya usaba la web de Mateo, en `algebraparatodos.com`.
+
+### El widget no puede dar por supuesto dónde lo pegan
+
+La etiqueta vive en el `<head>`. Todo lo que toque `document.body` va detrás
+de una espera al DOM: si no, corre antes de que el `<body>` exista y falla
+sobre `null`. Y falla en silencio de la peor manera, porque los estilos se
+inyectan en el `<head>` unas líneas antes y sí funcionan, así que todo
+parece haber ido bien. Fue exactamente el fallo del 21/08/2026.
+
 ## Por qué acá no está el conocimiento del bot
 
 Estuvo, y se movió. Los `.md` con precios, preguntas frecuentes, contacto y
