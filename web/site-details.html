@@ -1,130 +1,71 @@
 <!-- =========================================================
-     CCN – SITE DETAILS (MASTER ESTABLE)
+     CCN – SITE DETAILS (Kajabi)
+     =========================================================
+
+     Esto es lo que va pegado en el campo "Site Details" de Kajabi,
+     y desde el 21/08/2026 es TODO lo que va: el resto se bajó a
+     archivos de este repo y lo sirve el Worker.
+
+     Antes acá vivían trescientas líneas —tipografías, cookies,
+     ManyChat, el arreglo de anclas, la traducción de la página de
+     descargas y el chatbot—, y para cambiar cualquier cosa había que
+     entrar a Kajabi y editar a mano, sin historial y sin poder ver qué
+     cambió.
+
+     LO QUE SE QUEDA ACÁ, Y POR QUÉ CADA COSA
+     -----------------------------------------
+
+     1. Los dos <meta> de verificación. Los robots de Pinterest y de
+        Facebook que comprueban el dominio NO ejecutan JavaScript: si
+        se inyectaran, la verificación del dominio se rompería.
+
+     2. El píxel de Meta. Podría moverse, pero es el único bloque donde
+        un fallo silencioso cuesta plata: si el Worker no respondiera,
+        se perdería la atribución de los anuncios sin que nadie se
+        entere. Y es código que no se cambia nunca. Se queda como
+        seguro barato.
+
+     3. Las dos etiquetas que apuntan al Worker.
+
+     El <script> lleva `defer`, y eso no es decorativo: hace que el
+     código corra después de que el HTML esté leído y ANTES de que se
+     dispare DOMContentLoaded, o sea igual que cuando estaba pegado
+     acá. Sin `defer` cambiaría el momento en que corre todo.
+
+     PARA CAMBIAR CUALQUIER OTRA COSA NO SE ENTRA ACÁ
+     ------------------------------------------------
+     Se edita el archivo en este repo y se hace push. El cambio se ve
+     en la web dentro del minuto siguiente (el Worker cachea 60
+     segundos, a propósito).
+
+       Tipografías y estilos ....... web/estilos.css
+       Aviso de cookies ............ web/partes/10-cookies.js
+       ManyChat .................... web/partes/20-manychat.js
+       Anclas y header sticky ...... web/partes/30-anclas.js
+       Traducción de /downloads/ ... web/partes/40-downloads.js
+       El chatbot Clay ............. chatbot/ccn-chatbot.js
      ========================================================= -->
-
-<style>
-/* ===============================
-   FUENTES
-   =============================== */
-@font-face {
-  font-family: 'RecoletaAlt';
-  src: url('/resource_redirect/downloads/file-uploads/sites/2148553437/themes/2161145720/downloads/1a21464-e040-e75a-d2a-2d6c520b4fe7_RecoletaAlt-Regular.ttf') format('truetype');
-}
-@font-face {
-  font-family: 'FontTwo';
-  src: url('/resource_redirect/downloads/file-uploads/sites/2148553437/themes/2161145720/downloads/1d35010-4e70-27c-80e3-4ddca52e470a_GochiHand-Regular.ttf') format('truetype');
-}
-@font-face {
-  font-family: 'Apercu';
-  src: url('/resource_redirect/downloads/file-uploads/sites/2148553437/themes/2161145720/downloads/ebff7d1-6bbf-58d-125-78c051f073_Apercu_Regular.ttf') format('truetype');
-}
-@font-face {
-  font-family: 'RecoletaMedium';
-  src: url('/resource_redirect/downloads/file-uploads/sites/2148553437/themes/2161145720/downloads/54ea03b-fab3-a17-bd7-d2cb0b352e_RecoletaAlt-Medium.ttf') format('truetype');
-}
-
-/* ===============================
-   ASIGNACIÓN TIPOGRÁFICA
-   =============================== */
-h1, h2, h3 { font-family: 'RecoletaAlt', sans-serif; }
-h4 { font-family: 'FontTwo', sans-serif; }
-h5, h6 { font-family: 'Apercu', sans-serif; }
-
-body, p, ul, ol, li, a {
-  font-family: 'Apercu', sans-serif;
-  line-height: 1.6;
-}
-
-.btn, .form-btn { font-family: 'RecoletaMedium', sans-serif; }
-
-/* ===============================
-   RESET DE NEGRITAS KAJABI
-   =============================== */
-h1, h2, h3, h4, h5, h6,
-.block h1, .block h2, .block h3, .block h4, .block h5, .block h6 {
-  font-weight: 400 !important;
-}
-
-/* ===============================
-   ESCALA MOBILE
-   =============================== */
-@media (max-width: 768px){
-  h1 { font-size: 30px; }
-  h2 { font-size: 26px; }
-  h3 { font-size: 22px; }
-  h4 { font-size: 20px; }
-  h5 { font-size: 16px; }
-  h6 { font-size: 14px; }
-  p, li { font-size: 15px; }
-}
-
-/* ===============================
-   TEXT ALIGN MOBILE
-   =============================== */
-@media (max-width: 768px){
-  body, p, h1, h2, h3, h4, h5, h6, li, span, div, a {
-    text-align: left !important;
-  }
-  .btn, .btn *, button, button *, a.btn {
-    text-align: center !important;
-  }
-}
-
-/* ===============================
-   BOTONES CENTRADOS EN MOBILE
-   =============================== */
-@media (max-width: 768px){
-  .btn,
-  a.btn,
-  .form-btn,
-  button {
-    display: block !important;
-    margin-left: auto !important;
-    margin-right: auto !important;
-    text-align: center !important;
-  }
-}
-
-/* ===============================
-   DESACTIVAR SMOOTH NATIVO
-   =============================== */
-html {
-  scroll-behavior: auto !important;
-}
-</style>
 
 <!-- ===============================
      META / VERIFICACIONES
+     (se quedan acá: los robots que las leen no ejecutan JavaScript)
      =============================== -->
 <meta name="p:domain_verify" content="2f7ae28d5e73fd06172b24bbfa6c81eb" />
 <meta name="facebook-domain-verification" content="u8nmkqy5igtdan77u3h6om6i1z8t3f" />
 
 <!-- ===============================
-     COOKIE CONSENT
-     =============================== -->
-<script src="//www.freeprivacypolicy.com/public/cookie-consent/4.2.0/cookie-consent.js"></script>
-<script>
-document.addEventListener('DOMContentLoaded', function () {
-  cookieconsent.run({
-    notice_banner_type: "headline",
-    consent_type: "express",
-    palette: "light",
-    language: "es",
-    page_load_consent_levels: ["strictly-necessary"],
-    website_name: "https://ceramicaconnati.com/",
-    website_privacy_policy_url: "https://ceramicaconnati.com/terminos-y-condiciones"
-  });
-});
-</script>
+     ESTILOS DEL SITIO
+     Sale de web/estilos.css, servido por el Worker.
 
-<!-- ===============================
-     MANYCHAT
+     Va como <link> y no inyectado con JavaScript a propósito: si el
+     CSS se inyectara con JS, la página se dibujaría un instante con la
+     tipografía por defecto y después saltaría a la de la escuela.
      =============================== -->
-<script src="//widget.manychat.com/1328201_60b5d.js" defer></script>
-<script src="https://mccdn.me/assets/js/widget.js" defer></script>
+<link rel="stylesheet" href="https://ccn-chatbot.agaparatodos.workers.dev/estilos.css">
 
 <!-- ===============================
      META PIXEL
+     Se queda pegado acá a propósito. Ver la explicación de arriba.
      =============================== -->
 <script>
 !function(f,b,e,v,n,t,s){
@@ -164,199 +105,10 @@ src="https://www.facebook.com/tr?id=1376271230773768&ev=PageView&noscript=1"/>
 </noscript>
 
 <!-- ===============================
-     FIX ANCLAS + HEADER STICKY (v5 – no rompe popups / hashes “virtuales”)
+     TODO LO DEMÁS
+     Cookies + ManyChat + anclas + traducción de descargas + Clay,
+     armado por el Worker a partir de los archivos de este repo.
+
+     El `defer` es obligatorio: ver la explicación de arriba.
      =============================== -->
-<script>
-(function () {
-
-  function isMobile() {
-    return window.matchMedia && window.matchMedia('(max-width: 768px)').matches;
-  }
-
-  function getStickyHeaderHeight() {
-    var candidates = Array.from(document.querySelectorAll(
-      'header, .header, .header__content, .header__content--desktop, .header__content--mobile, .announcement, .topbar, .nav, .navbar'
-    ));
-
-    var topBar = candidates
-      .map(function (el) {
-        var cs = getComputedStyle(el);
-        var r = el.getBoundingClientRect();
-        return { el: el, cs: cs, r: r };
-      })
-      .filter(function (x) {
-        var pos = x.cs.position;
-        var isStickyOrFixed = (pos === 'fixed' || pos === 'sticky');
-        return isStickyOrFixed && x.r.top <= 1 && x.r.height > 30;
-      })
-      .sort(function (a, b) { return b.r.height - a.r.height; })[0];
-
-    return topBar ? Math.round(topBar.r.height) : 0;
-  }
-
-  function findTargetFromHash(hash) {
-    if (!hash || hash.length < 2) return null;
-    var id = decodeURIComponent(hash.slice(1));
-
-    var t = document.getElementById(id);
-    if (t) return t;
-
-    try { return document.querySelector('[name="' + CSS.escape(id) + '"]'); }
-    catch (e) { return document.querySelector('[name="' + id.replace(/"/g, '\\"') + '"]'); }
-  }
-
-  function doScroll(hash) {
-    var target = findTargetFromHash(hash);
-    if (!target) return;
-
-    var headerH = getStickyHeaderHeight();
-
-    // 👇 ACÁ ajustás aire:
-    var extra = isMobile() ? 2 : 12;
-
-    var y = target.getBoundingClientRect().top + window.pageYOffset - headerH - extra;
-
-    window.scrollTo({ top: y, behavior: 'smooth' });
-  }
-
-  function scrollWithRetries(hash) {
-    doScroll(hash);
-    setTimeout(function(){ doScroll(hash); }, 80);
-    setTimeout(function(){ doScroll(hash); }, 220);
-  }
-
-  document.addEventListener('click', function (e) {
-    var a = e.target.closest('a[href*="#"]');
-    if (!a) return;
-
-    var href = a.getAttribute('href') || '';
-    var idx = href.indexOf('#');
-    if (idx === -1) return;
-
-    var hash = href.slice(idx);
-    if (!hash || hash === '#') return;
-
-    // ✅ Si NO existe un elemento con ese id/name, NO es un ancla real:
-    //    lo dejamos pasar para que Kajabi abra popups (#cta-popup, etc.)
-    var target = findTargetFromHash(hash);
-    if (!target) return;
-
-    // 🔥 clave: evitar que otros handlers hagan scroll luego
-    e.preventDefault();
-    e.stopPropagation();
-    if (e.stopImmediatePropagation) e.stopImmediatePropagation();
-
-    if (window.location.hash !== hash) history.pushState(null, '', hash);
-    scrollWithRetries(hash);
-  }, true);
-
-  window.addEventListener('load', function () {
-    if (!window.location.hash) return;
-
-    // ✅ si no existe target, no scrolleamos (popups / hashes “virtuales”)
-    var t = findTargetFromHash(window.location.hash);
-    if (!t) return;
-
-    scrollWithRetries(window.location.hash);
-  });
-
-  window.addEventListener('hashchange', function () {
-    if (!window.location.hash) return;
-
-    var t = findTargetFromHash(window.location.hash);
-    if (!t) return;
-
-    scrollWithRetries(window.location.hash);
-  });
-
-})();
-</script>
-
-<!-- ===============================
-     TRADUCCIÓN PÁGINA DOWNLOADS (Files / Download All → español)
-     =============================== -->
-<script>
-(function () {
-  if (!window.location.pathname.startsWith('/downloads/')) return;
-
-  var traducciones = {
-    'Files': 'Archivos',
-    'Download All': 'Descargar todo'
-  };
-
-  function traducirNodo(nodo) {
-    if (nodo.nodeType === Node.TEXT_NODE) {
-      var texto = nodo.nodeValue.trim();
-      if (traducciones[texto]) {
-        nodo.nodeValue = nodo.nodeValue.replace(texto, traducciones[texto]);
-      }
-      var match = nodo.nodeValue.match(/^(\d+)\s+files?(\s*[•·]\s*.+)?$/);
-      if (match) {
-        var cantidad = match[1];
-        var resto = match[2] || '';
-        nodo.nodeValue = cantidad + ' archivo' + (cantidad === '1' ? '' : 's') + resto;
-      }
-    } else if (nodo.nodeType === Node.ELEMENT_NODE) {
-      nodo.childNodes.forEach(traducirNodo);
-    }
-  }
-
-  function iniciar() {
-    if (!document.body) {
-      setTimeout(iniciar, 50);
-      return;
-    }
-    traducirNodo(document.body);
-    var observer = new MutationObserver(function () {
-      traducirNodo(document.body);
-    });
-    observer.observe(document.body, { childList: true, subtree: true });
-  }
-
-  iniciar();
-})();
-</script>
-
-<!-- ===============================
-     CHATBOT CCN (Clay) — carga desde GitHub raw, sin caché de ningún tipo
-
-     Antes esto era una etiqueta <script src> apuntando a jsDelivr, y el
-     comentario de arriba ya mentía: jsDelivr cachea la rama hasta 12
-     horas, y encima sirve el archivo con caché de navegador de 7 días.
-     El 21/08/2026 eso dejó a Clay roto en la web durante horas después
-     de que el arreglo ya estuviera hecho y subido.
-
-     Bajándolo con fetch y sin caché, un arreglo se ve en la visita
-     siguiente. Si GitHub falla, cae solo a jsDelivr: más lento en
-     enterarse de un cambio, pero no se cae nunca.
-
-     Es el mismo camino que ya usa la web de Mateo.
-     =============================== -->
-<script>
-(function () {
-  var RAW = "https://raw.githubusercontent.com/algebraparatodos/ccn/main/chatbot/ccn-chatbot.js";
-  var CDN = "https://cdn.jsdelivr.net/gh/algebraparatodos/ccn@main/chatbot/ccn-chatbot.js";
-
-  function colgar(script) {
-    // documentElement siempre existe, incluso mientras se lee el <head>.
-    (document.head || document.documentElement).appendChild(script);
-  }
-
-  fetch(RAW + "?nocache=" + Date.now(), { cache: "no-store" })
-    .then(function (res) {
-      if (!res.ok) throw new Error("GitHub respondio " + res.status);
-      return res.text();
-    })
-    .then(function (codigo) {
-      var s = document.createElement("script");
-      s.textContent = codigo;
-      colgar(s);
-    })
-    .catch(function (err) {
-      console.warn("Clay: no se pudo bajar de GitHub, se usa el CDN.", err);
-      var s = document.createElement("script");
-      s.src = CDN;
-      colgar(s);
-    });
-})();
-</script>
+<script src="https://ccn-chatbot.agaparatodos.workers.dev/web.js" defer></script>

@@ -1,0 +1,108 @@
+/* =========================================================
+   CCN — Estilos del sitio (Kajabi)
+   =========================================================
+   Esto vivía pegado dentro de un <style> en el Site Details de
+   Kajabi. Ahora lo sirve el Worker desde este archivo, y en Kajabi
+   quedó una sola etiqueta <link>.
+
+   Por qué <link> y no inyectarlo con JavaScript: si el CSS se
+   inyecta con JS, la página se dibuja un instante con la tipografía
+   por defecto y después salta a la de la escuela. Con un <link>
+   normal el navegador espera y no hay salto.
+
+   Y por qué pasa por el Worker y no directo por GitHub: raw.github
+   sirve los archivos como texto plano, y un navegador rechaza un CSS
+   cuyo tipo no sea text/css. El Worker lo declara bien.
+
+   Las tipografías siguen alojadas en Kajabi (las URL /resource_redirect
+   de abajo). Sólo se mudó la hoja de estilos, no los archivos .ttf.
+   ========================================================= */
+
+/* ===============================
+   FUENTES
+   =============================== */
+@font-face {
+  font-family: 'RecoletaAlt';
+  src: url('/resource_redirect/downloads/file-uploads/sites/2148553437/themes/2161145720/downloads/1a21464-e040-e75a-d2a-2d6c520b4fe7_RecoletaAlt-Regular.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'FontTwo';
+  src: url('/resource_redirect/downloads/file-uploads/sites/2148553437/themes/2161145720/downloads/1d35010-4e70-27c-80e3-4ddca52e470a_GochiHand-Regular.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'Apercu';
+  src: url('/resource_redirect/downloads/file-uploads/sites/2148553437/themes/2161145720/downloads/ebff7d1-6bbf-58d-125-78c051f073_Apercu_Regular.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'RecoletaMedium';
+  src: url('/resource_redirect/downloads/file-uploads/sites/2148553437/themes/2161145720/downloads/54ea03b-fab3-a17-bd7-d2cb0b352e_RecoletaAlt-Medium.ttf') format('truetype');
+}
+
+/* ===============================
+   ASIGNACIÓN TIPOGRÁFICA
+   =============================== */
+h1, h2, h3 { font-family: 'RecoletaAlt', sans-serif; }
+h4 { font-family: 'FontTwo', sans-serif; }
+h5, h6 { font-family: 'Apercu', sans-serif; }
+
+body, p, ul, ol, li, a {
+  font-family: 'Apercu', sans-serif;
+  line-height: 1.6;
+}
+
+.btn, .form-btn { font-family: 'RecoletaMedium', sans-serif; }
+
+/* ===============================
+   RESET DE NEGRITAS KAJABI
+   =============================== */
+h1, h2, h3, h4, h5, h6,
+.block h1, .block h2, .block h3, .block h4, .block h5, .block h6 {
+  font-weight: 400 !important;
+}
+
+/* ===============================
+   ESCALA MOBILE
+   =============================== */
+@media (max-width: 768px){
+  h1 { font-size: 30px; }
+  h2 { font-size: 26px; }
+  h3 { font-size: 22px; }
+  h4 { font-size: 20px; }
+  h5 { font-size: 16px; }
+  h6 { font-size: 14px; }
+  p, li { font-size: 15px; }
+}
+
+/* ===============================
+   TEXT ALIGN MOBILE
+   =============================== */
+@media (max-width: 768px){
+  body, p, h1, h2, h3, h4, h5, h6, li, span, div, a {
+    text-align: left !important;
+  }
+  .btn, .btn *, button, button *, a.btn {
+    text-align: center !important;
+  }
+}
+
+/* ===============================
+   BOTONES CENTRADOS EN MOBILE
+   =============================== */
+@media (max-width: 768px){
+  .btn,
+  a.btn,
+  .form-btn,
+  button {
+    display: block !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    text-align: center !important;
+  }
+}
+
+/* ===============================
+   DESACTIVAR SMOOTH NATIVO
+   =============================== */
+html {
+  scroll-behavior: auto !important;
+}
