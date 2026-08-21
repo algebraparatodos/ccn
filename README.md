@@ -17,10 +17,19 @@ chatbot y sin botón de reserva — **sin ningún error visible**.
 
 ## Cómo lo carga la web, y por qué importa
 
-El bloque que hay que pegar en el `<head>` de Kajabi está guardado acá, en
-`chatbot/cargador-para-la-web.html`. Vive en el repo a propósito: si sólo
-existiera dentro del editor de Kajabi, nadie sabría qué había el día que se
-borre.
+**El Site Details entero de Kajabi está guardado acá, en
+`web/site-details.html`.** No sólo el trozo del chatbot: el bloque completo,
+tal cual está pegado en la web —tipografías, gestor de cookies, pixel de
+Meta, ManyChat, el arreglo de anclas y la traducción de la página de
+descargas—.
+
+Vive en el repo por dos motivos. Uno, si sólo existiera dentro del editor de
+Kajabi nadie sabría qué había el día que se borre. Y dos, para poder ver en
+un `git diff` qué cambió exactamente antes de pegarlo: es la única forma de
+tocar ese bloque sin cruzar los dedos.
+
+**Es una copia, no la fuente**: lo que manda es lo que está pegado en Kajabi.
+Si se edita allá, hay que traerlo acá.
 
 **Baja el widget por `raw.githubusercontent.com` con `?nocache=`, no por
 jsDelivr**, y eso no es un capricho. El 21/08/2026 se arregló un fallo que
