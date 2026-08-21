@@ -44,9 +44,28 @@ casi no cambia, lo que hay ahí es lo que hay allá.
 | `chatbot/inscripcion.md` | **Dos** consumidores: `cta-reserva.js` desde el navegador, y el Worker de Clay desde el servidor. |
 | `web/site-details.html` | Nadie lo carga. Es lo que está pegado en Kajabi, guardado acá para tener historial. |
 
-`cta-reserva.js` quedó como estaba a propósito: vive en otra parte de
-Kajabi, no en el Site Details, y mudarlo sin saber exactamente en qué página
-está pegado era arriesgar el botón de inscripción para no ganar nada.
+## `cta-reserva.js` se queda donde está, y es una decisión
+
+Decisión de Juani del 21/08/2026, al terminar la mudanza del Site Details.
+**No proponer mudarlo sin leer esto primero.**
+
+El montaje es deliberado y ya le da lo que quiere. En Kajabi, cada botón es
+sólo una marca —un `data-ccn-cta="ciclo-formativo"`— sin nada de contenido
+adentro. El título, el subtítulo, los botones con sus precios y enlaces y el
+pie viven todos en `cta-reserva.js`, por producto y por fase. Y la fase no se
+elige a mano: sale de comparar la fecha de hoy contra las dos líneas de
+`chatbot/inscripcion.md`.
+
+En sus palabras: *"los botones de Kajabi jamás los voy a cambiar, pero puedo
+cambiar masivamente los CTAs cambiando ese script"*. Exactamente eso hace.
+
+Lo único que quedó pendiente y conviene tener presente: **se carga por
+jsDelivr**, que es la misma caché que dejó a Clay roto durante horas —hasta
+12 horas con la rama vieja, más 7 días de caché de navegador—. O sea que un
+cambio masivo de CTAs puede tardar medio día en verse. Pasarlo por el Worker
+lo bajaría a un minuto, pero obliga a editar el fragmento de cada botón una
+vez, que es justo lo que Juani no quiere tocar. Queda como está hasta que él
+diga otra cosa.
 
 ## Por qué pasa por el Worker y no directo por GitHub
 
