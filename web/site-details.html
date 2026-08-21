@@ -1,0 +1,323 @@
+<!-- =========================================================
+     CCN – SITE DETAILS (MASTER ESTABLE)
+     ========================================================= -->
+
+<style>
+/* ===============================
+   FUENTES
+   =============================== */
+@font-face {
+  font-family: 'RecoletaAlt';
+  src: url('/resource_redirect/downloads/file-uploads/sites/2148553437/themes/2161145720/downloads/1a21464-e040-e75a-d2a-2d6c520b4fe7_RecoletaAlt-Regular.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'FontTwo';
+  src: url('/resource_redirect/downloads/file-uploads/sites/2148553437/themes/2161145720/downloads/1d35010-4e70-27c-80e3-4ddca52e470a_GochiHand-Regular.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'Apercu';
+  src: url('/resource_redirect/downloads/file-uploads/sites/2148553437/themes/2161145720/downloads/ebff7d1-6bbf-58d-125-78c051f073_Apercu_Regular.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'RecoletaMedium';
+  src: url('/resource_redirect/downloads/file-uploads/sites/2148553437/themes/2161145720/downloads/54ea03b-fab3-a17-bd7-d2cb0b352e_RecoletaAlt-Medium.ttf') format('truetype');
+}
+
+/* ===============================
+   ASIGNACIÓN TIPOGRÁFICA
+   =============================== */
+h1, h2, h3 { font-family: 'RecoletaAlt', sans-serif; }
+h4 { font-family: 'FontTwo', sans-serif; }
+h5, h6 { font-family: 'Apercu', sans-serif; }
+
+body, p, ul, ol, li, a {
+  font-family: 'Apercu', sans-serif;
+  line-height: 1.6;
+}
+
+.btn, .form-btn { font-family: 'RecoletaMedium', sans-serif; }
+
+/* ===============================
+   RESET DE NEGRITAS KAJABI
+   =============================== */
+h1, h2, h3, h4, h5, h6,
+.block h1, .block h2, .block h3, .block h4, .block h5, .block h6 {
+  font-weight: 400 !important;
+}
+
+/* ===============================
+   ESCALA MOBILE
+   =============================== */
+@media (max-width: 768px){
+  h1 { font-size: 30px; }
+  h2 { font-size: 26px; }
+  h3 { font-size: 22px; }
+  h4 { font-size: 20px; }
+  h5 { font-size: 16px; }
+  h6 { font-size: 14px; }
+  p, li { font-size: 15px; }
+}
+
+/* ===============================
+   TEXT ALIGN MOBILE
+   =============================== */
+@media (max-width: 768px){
+  body, p, h1, h2, h3, h4, h5, h6, li, span, div, a {
+    text-align: left !important;
+  }
+  .btn, .btn *, button, button *, a.btn {
+    text-align: center !important;
+  }
+}
+
+/* ===============================
+   BOTONES CENTRADOS EN MOBILE
+   =============================== */
+@media (max-width: 768px){
+  .btn,
+  a.btn,
+  .form-btn,
+  button {
+    display: block !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    text-align: center !important;
+  }
+}
+
+/* ===============================
+   DESACTIVAR SMOOTH NATIVO
+   =============================== */
+html {
+  scroll-behavior: auto !important;
+}
+</style>
+
+<!-- ===============================
+     META / VERIFICACIONES
+     =============================== -->
+<meta name="p:domain_verify" content="2f7ae28d5e73fd06172b24bbfa6c81eb" />
+<meta name="facebook-domain-verification" content="u8nmkqy5igtdan77u3h6om6i1z8t3f" />
+
+<!-- ===============================
+     COOKIE CONSENT
+     =============================== -->
+<script src="//www.freeprivacypolicy.com/public/cookie-consent/4.2.0/cookie-consent.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  cookieconsent.run({
+    notice_banner_type: "headline",
+    consent_type: "express",
+    palette: "light",
+    language: "es",
+    page_load_consent_levels: ["strictly-necessary"],
+    website_name: "https://ceramicaconnati.com/",
+    website_privacy_policy_url: "https://ceramicaconnati.com/terminos-y-condiciones"
+  });
+});
+</script>
+
+<!-- ===============================
+     MANYCHAT
+     =============================== -->
+<script src="//widget.manychat.com/1328201_60b5d.js" defer></script>
+<script src="https://mccdn.me/assets/js/widget.js" defer></script>
+
+<!-- ===============================
+     META PIXEL
+     =============================== -->
+<script>
+!function(f,b,e,v,n,t,s){
+if(f.fbq)return;
+n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;
+n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];
+t=b.createElement(e);t.async=!0;
+t.src=v;
+s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s);
+}(window, document,'script','https://connect.facebook.net/en_US/fbevents.js');
+
+fbq('init', '1376271230773768');
+fbq('track', 'PageView');
+
+document.addEventListener('click', function (e) {
+  var el = e.target.closest('a, button');
+  if (!el) return;
+  var href = (el.getAttribute('href') || '').toLowerCase();
+  if (
+    href.includes('mpago') ||
+    href.includes('mercadopago') ||
+    href.includes('/offers/') ||
+    href.includes('checkout')
+  ) {
+    fbq('track', 'InitiateCheckout');
+  }
+});
+</script>
+
+<noscript>
+<img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=1376271230773768&ev=PageView&noscript=1"/>
+</noscript>
+
+<!-- ===============================
+     FIX ANCLAS + HEADER STICKY (v5 – no rompe popups / hashes “virtuales”)
+     =============================== -->
+<script>
+(function () {
+
+  function isMobile() {
+    return window.matchMedia && window.matchMedia('(max-width: 768px)').matches;
+  }
+
+  function getStickyHeaderHeight() {
+    var candidates = Array.from(document.querySelectorAll(
+      'header, .header, .header__content, .header__content--desktop, .header__content--mobile, .announcement, .topbar, .nav, .navbar'
+    ));
+
+    var topBar = candidates
+      .map(function (el) {
+        var cs = getComputedStyle(el);
+        var r = el.getBoundingClientRect();
+        return { el: el, cs: cs, r: r };
+      })
+      .filter(function (x) {
+        var pos = x.cs.position;
+        var isStickyOrFixed = (pos === 'fixed' || pos === 'sticky');
+        return isStickyOrFixed && x.r.top <= 1 && x.r.height > 30;
+      })
+      .sort(function (a, b) { return b.r.height - a.r.height; })[0];
+
+    return topBar ? Math.round(topBar.r.height) : 0;
+  }
+
+  function findTargetFromHash(hash) {
+    if (!hash || hash.length < 2) return null;
+    var id = decodeURIComponent(hash.slice(1));
+
+    var t = document.getElementById(id);
+    if (t) return t;
+
+    try { return document.querySelector('[name="' + CSS.escape(id) + '"]'); }
+    catch (e) { return document.querySelector('[name="' + id.replace(/"/g, '\\"') + '"]'); }
+  }
+
+  function doScroll(hash) {
+    var target = findTargetFromHash(hash);
+    if (!target) return;
+
+    var headerH = getStickyHeaderHeight();
+
+    // 👇 ACÁ ajustás aire:
+    var extra = isMobile() ? 2 : 12;
+
+    var y = target.getBoundingClientRect().top + window.pageYOffset - headerH - extra;
+
+    window.scrollTo({ top: y, behavior: 'smooth' });
+  }
+
+  function scrollWithRetries(hash) {
+    doScroll(hash);
+    setTimeout(function(){ doScroll(hash); }, 80);
+    setTimeout(function(){ doScroll(hash); }, 220);
+  }
+
+  document.addEventListener('click', function (e) {
+    var a = e.target.closest('a[href*="#"]');
+    if (!a) return;
+
+    var href = a.getAttribute('href') || '';
+    var idx = href.indexOf('#');
+    if (idx === -1) return;
+
+    var hash = href.slice(idx);
+    if (!hash || hash === '#') return;
+
+    // ✅ Si NO existe un elemento con ese id/name, NO es un ancla real:
+    //    lo dejamos pasar para que Kajabi abra popups (#cta-popup, etc.)
+    var target = findTargetFromHash(hash);
+    if (!target) return;
+
+    // 🔥 clave: evitar que otros handlers hagan scroll luego
+    e.preventDefault();
+    e.stopPropagation();
+    if (e.stopImmediatePropagation) e.stopImmediatePropagation();
+
+    if (window.location.hash !== hash) history.pushState(null, '', hash);
+    scrollWithRetries(hash);
+  }, true);
+
+  window.addEventListener('load', function () {
+    if (!window.location.hash) return;
+
+    // ✅ si no existe target, no scrolleamos (popups / hashes “virtuales”)
+    var t = findTargetFromHash(window.location.hash);
+    if (!t) return;
+
+    scrollWithRetries(window.location.hash);
+  });
+
+  window.addEventListener('hashchange', function () {
+    if (!window.location.hash) return;
+
+    var t = findTargetFromHash(window.location.hash);
+    if (!t) return;
+
+    scrollWithRetries(window.location.hash);
+  });
+
+})();
+</script>
+
+<!-- ===============================
+     TRADUCCIÓN PÁGINA DOWNLOADS (Files / Download All → español)
+     =============================== -->
+<script>
+(function () {
+  if (!window.location.pathname.startsWith('/downloads/')) return;
+
+  var traducciones = {
+    'Files': 'Archivos',
+    'Download All': 'Descargar todo'
+  };
+
+  function traducirNodo(nodo) {
+    if (nodo.nodeType === Node.TEXT_NODE) {
+      var texto = nodo.nodeValue.trim();
+      if (traducciones[texto]) {
+        nodo.nodeValue = nodo.nodeValue.replace(texto, traducciones[texto]);
+      }
+      var match = nodo.nodeValue.match(/^(\d+)\s+files?(\s*[•·]\s*.+)?$/);
+      if (match) {
+        var cantidad = match[1];
+        var resto = match[2] || '';
+        nodo.nodeValue = cantidad + ' archivo' + (cantidad === '1' ? '' : 's') + resto;
+      }
+    } else if (nodo.nodeType === Node.ELEMENT_NODE) {
+      nodo.childNodes.forEach(traducirNodo);
+    }
+  }
+
+  function iniciar() {
+    if (!document.body) {
+      setTimeout(iniciar, 50);
+      return;
+    }
+    traducirNodo(document.body);
+    var observer = new MutationObserver(function () {
+      traducirNodo(document.body);
+    });
+    observer.observe(document.body, { childList: true, subtree: true });
+  }
+
+  iniciar();
+})();
+</script>
+
+<!-- ===============================
+     CHATBOT CCN (carga desde GitHub raw, sin caché de ningún tipo)
+     =============================== -->
+<script src="https://cdn.jsdelivr.net/gh/algebraparatodos/ccn@main/chatbot/ccn-chatbot.js"></script>
