@@ -398,8 +398,25 @@
     </div>
   `;
 
-  document.body.appendChild(toggle);
-  document.body.appendChild(panel);
+  // La etiqueta <script> de la web vive en el <head> y sin `defer`, asi
+  // que cuando este archivo corre el <body> todavia no existe: metidos
+  // directamente, estos dos appendChild fallaban sobre null y la burbuja
+  // no se dibujaba nunca. El fallo era silencioso de la peor manera,
+  // porque los estilos se inyectan unas lineas mas arriba en el <head>,
+  // que si existe — o sea que todo parecia haber funcionado.
+  // Esperar al DOM cuesta cuatro lineas y ademas hace que el widget
+  // funcione este donde este puesta la etiqueta. Es lo mismo que ya
+  // hacia cta-reserva.js en este mismo repo.
+  function montarEnLaPagina() {
+    document.body.appendChild(toggle);
+    document.body.appendChild(panel);
+  }
+
+  if (document.body) {
+    montarEnLaPagina();
+  } else {
+    document.addEventListener("DOMContentLoaded", montarEnLaPagina);
+  }
 
   const messagesEl = panel.querySelector("#ccn-chat-messages");
   const inputEl = panel.querySelector("#ccn-chat-input");
