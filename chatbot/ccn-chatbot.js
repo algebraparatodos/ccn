@@ -4,7 +4,7 @@
   // ============================================================
   // CONFIGURACIÓN
   // ============================================================
-  const WORKER_URL = "https://ccn-chatbot.agaparatodos.workers.dev";
+  const WORKER_URL = "https://chat.ceramicaconnati.com";
 
   const EXCLUDE_PATTERNS = ["/products", "/library", "/login", "/coworking"];
 
