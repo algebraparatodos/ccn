@@ -6,7 +6,7 @@ Las inscripciones están siempre abiertas, se puede empezar en cualquier momento
 Enlaces de pago según moneda:
 - Euros: https://www.ceramicaconnati.com/offers/k5FS2m2q/checkout
 - Dólares: https://www.ceramicaconnati.com/offers/oECqMdng/checkout
-- Pesos argentinos: https://mpago.li/2yFzPPT
+- Pesos argentinos: https://www.mercadopago.com.ar/checkout/v1/redirect?pref_id=261682771-18da941e-618e-4007-b9fb-84f0f1fc2243
 
 ## Ciclo Formativo
 
@@ -26,7 +26,7 @@ Importante: verificar la fecha actual antes de responder. Si hoy cae entre la fe
 Se puede reservar el lugar por anticipado abonando un pequeño adelanto, sin necesidad de elegir todavía un módulo específico. Reservar garantiza el cupo (los cupos son limitados) y da el descuento indicado en precios.md sobre el precio final del curso.
 
 Enlaces de reserva:
-- Pesos argentinos: https://mpago.la/213UJQJ
+- Pesos argentinos: https://www.mercadopago.com.ar/checkout/v1/redirect?pref_id=261682771-33c6ce14-ec34-4de6-a834-a46c45360c23
 - Euros: https://www.ceramicaconnati.com/offers/euJT7PeX/checkout
 
 **Importante — la reserva se ofrece HOY, no "para cuando llegue marzo":** si hoy estamos en fase de reserva, la reserva es algo que la persona puede hacer en este momento, ahora mismo, con los links de arriba. Nunca decirle que "espere" a marzo para reservar — eso es lo que NO hay que decir. Marzo es el mes en que se formaliza la inscripción completa (eligiendo módulo), no el mes en que se reserva. La reserva pasa antes, durante todo el resto del año.
@@ -43,17 +43,17 @@ Enlaces de inscripción completa por módulo:
 Módulo 1:
 - Euros: https://www.ceramicaconnati.com/offers/dYhdMVGu/checkout
 - Dólares: https://www.ceramicaconnati.com/offers/neUP55cr/checkout
-- Pesos argentinos (con cuotas): https://mpago.li/1wCbQry
+- Pesos argentinos (con cuotas): https://www.mercadopago.com.ar/checkout/v1/redirect?pref_id=261682771-0301fb8e-950c-4b93-8de8-6e6de701a94a
 
 Módulo 2:
 - Euros: https://www.ceramicaconnati.com/offers/CRCCgoX8/checkout
 - Dólares: https://www.ceramicaconnati.com/offers/qoxzmRz3/checkout
-- Pesos argentinos (con cuotas): https://mpago.li/1skQ1yj
+- Pesos argentinos (con cuotas): https://www.mercadopago.com.ar/checkout/v1/redirect?pref_id=261682771-1793a806-d5af-4a0e-8bf8-fb1c4fd730db
 
 Módulo 3:
 - Euros: https://www.ceramicaconnati.com/offers/bojpN95E/checkout
 - Dólares: https://www.ceramicaconnati.com/offers/xz8tgrA6/checkout
-- Pesos argentinos (con cuotas): https://mpago.li/2qWA3Gg
+- Pesos argentinos (con cuotas): https://www.mercadopago.com.ar/checkout/v1/redirect?pref_id=261682771-b25ebb54-4976-4b99-9586-e8a6a34db860
 
 Si alguien pregunta cómo asegurar su lugar o cómo obtener el descuento fuera de la ventana de inscripción completa, la respuesta es: reservando con el adelanto correspondiente a su moneda (sección de arriba; el monto exacto está en precios.md). Si hoy cae dentro de la ventana de inscripción completa, se lo deriva directo a los links de inscripción completa del módulo que le interese.
 

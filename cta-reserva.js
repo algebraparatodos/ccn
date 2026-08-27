@@ -30,7 +30,7 @@
         title: "Reserva tu lugar abonando un pequeño adelanto",
         subtitle: "y de regalo tendrás un 10% de descuento en el precio final del curso",
         buttons: [
-          { label: "Reservar por ARS 30.000", href: "https://mpago.la/213UJQJ" },
+          { label: "Reservar por ARS 30.000", href: "https://www.mercadopago.com.ar/checkout/v1/redirect?pref_id=261682771-33c6ce14-ec34-4de6-a834-a46c45360c23" },
           { label: "Reservar por 20 €", href: "https://www.ceramicaconnati.com/offers/euJT7PeX/checkout" }
         ],
         footer: "Los cupos son limitados. Pagando esta reserva garantizás tu lugar."
@@ -39,7 +39,7 @@
         title: "Inscribite al ciclo formativo",
         subtitle: "Empezamos el 15 de marzo — asegurá tu lugar",
         buttons: [
-          { label: "Comprar por ARS 220.000", href: "https://mpago.li/1wCbQry" },
+          { label: "Comprar por ARS 220.000", href: "https://www.mercadopago.com.ar/checkout/v1/redirect?pref_id=261682771-0301fb8e-950c-4b93-8de8-6e6de701a94a" },
           { label: "Comprar por 180 €", href: "https://www.ceramicaconnati.com/offers/dYhdMVGu/checkout" },
           { label: "Comprar por 210 USD", href: "https://www.ceramicaconnati.com/offers/neUP55cr/checkout" }
         ],
