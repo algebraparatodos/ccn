@@ -38,7 +38,7 @@ Ejemplo de qué SÍ decir (fase de reserva, hoy es agosto): "Ahora mismo estamos
 Ejemplo de qué NO decir: "Cuando llegue el 1 de marzo te aviso para que reserves tu lugar." — esto es incorrecto en dos sentidos: (a) la reserva no se hace en marzo, se hace ahora; (b) lo que pasa en marzo es la inscripción completa, no la reserva.
 
 ### Fase de inscripción completa
-Dentro de la ventana de inscripción completa, ya no está disponible la reserva con descuento — se pasa a inscripción a precio completo, eligiendo el módulo específico (Módulo 1, 2 o 3). Las clases empiezan el mismo día en que cierra esta ventana. Para precio y cuotas, ver precios.md.
+Dentro de la ventana de inscripción completa, ya no está disponible la reserva con descuento — se pasa a inscripción a precio completo, eligiendo el módulo específico (Módulo 1, 2 o 3). Las clases empiezan el mismo día en que cierra esta ventana. **El día de apertura NO es el día en que empiezan las clases**: entre una fecha y la otra hay dos semanas, y decirle a alguien que las clases arrancan el día que abre la inscripción es informarle mal la fecha de inicio. Para precio y cuotas, ver precios.md.
 
 Enlaces de inscripción completa por módulo:
 
