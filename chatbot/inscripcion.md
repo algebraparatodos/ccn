@@ -26,8 +26,10 @@ Importante: verificar la fecha actual antes de responder. Si hoy cae entre la fe
 Se puede reservar el lugar por anticipado abonando un pequeño adelanto, sin necesidad de elegir todavía un módulo específico. Reservar garantiza el cupo (los cupos son limitados) y da el descuento indicado en precios.md sobre el precio final del curso.
 
 Enlaces de reserva:
-- Pesos argentinos: https://mpago.la/213UJQJ
+- Pesos argentinos: https://www.mercadopago.com.ar/checkout/v1/redirect?pref_id=261682771-33c6ce14-ec34-4de6-a834-a46c45360c23
 - Euros: https://www.ceramicaconnati.com/offers/euJT7PeX/checkout
+
+**No hay link de reserva en dólares**, porque no hay reserva en dólares (ver precios.md): se abona en pesos o en euros, y el de euros se paga con tarjeta desde cualquier país. El de pesos es una preferencia de Checkout Pro nuestra, que vuelve a la página de gracias; el `mpago.la/213UJQJ` que había antes era un link de pago viejo que cobraba y dejaba a la persona en Mercado Pago, sin contar la conversión.
 
 **Importante — la reserva se ofrece HOY, no "para cuando llegue marzo":** si hoy estamos en fase de reserva, la reserva es algo que la persona puede hacer en este momento, ahora mismo, con los links de arriba. Nunca decirle que "espere" a marzo para reservar — eso es lo que NO hay que decir. Marzo es el mes en que se formaliza la inscripción completa (eligiendo módulo), no el mes en que se reserva. La reserva pasa antes, durante todo el resto del año.
 
