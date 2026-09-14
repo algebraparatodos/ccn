@@ -25,19 +25,34 @@ s.parentNode.insertBefore(t,s);
 fbq('init', '1376271230773768');
 fbq('track', 'PageView');
 
-document.addEventListener('click', function (e) {
-  var el = e.target.closest('a, button');
-  if (!el) return;
-  var href = (el.getAttribute('href') || '').toLowerCase();
-  if (
-    href.includes('mpago') ||
-    href.includes('mercadopago') ||
-    href.includes('/offers/') ||
-    href.includes('checkout')
-  ) {
-    fbq('track', 'InitiateCheckout');
-  }
-});
+/* ------------------------------------------------------------------
+   AQUI IBA EL DISPARADOR DE InitiateCheckout, quitado el 14/09/2026.
+
+   Que hacia: escuchaba TODOS los clics del documento, leia el href de
+   cada enlace o boton y, si parecia un checkout, mandaba un evento a
+   Facebook.
+
+   Por que se quito: ese dia AVG empezo a cortarles el aula a varias
+   alumnas con la categoria HTML:Script-inf [Susp], que quiere decir
+   "script sospechoso dentro del HTML". Un script pegado en la pagina
+   que engancha todos los clics, lee atributos y manda datos a un
+   dominio externo es, para un motor heuristico, la forma exacta de un
+   robador de credenciales. Y esta pagina es tambien la del login.
+
+   OJO: es una HIPOTESIS a comprobar, no una causa demostrada. Ese dia
+   ya se dieron por buenas otras dos que resultaron falsas. Se quita
+   esto porque es lo unico que permite salir de dudas, porque hoy no
+   cuesta nada (la campana de Meta esta en pausa desde el 13/09) y
+   porque el cambio es de una sola cosa, que es lo que hace que el
+   resultado signifique algo.
+
+   Si el aula deja de bloquearse, era esto. Si no, se devuelve tal
+   cual estaba: el bloque entero esta en el historial de git de
+   web/site-details.html.
+
+   Y si era esto, el evento no se pierde para siempre: se puede medir
+   desde web.js, que lo sirve el Worker y no va pegado en el HTML.
+   ------------------------------------------------------------------ */
 </script>
 
 <noscript>
