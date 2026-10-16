@@ -4,8 +4,8 @@
 Las inscripciones están siempre abiertas, se puede empezar en cualquier momento, no hay fechas fijas de apertura ni de cierre. Una vez inscripta, el acceso queda activo desde la fecha de inscripción. Para precio, cuotas y duración del acceso, ver precios.md.
 
 Enlaces de pago según moneda:
-- Euros: https://www.ceramicaconnati.com/offers/k5FS2m2q/checkout
-- Dólares: https://www.ceramicaconnati.com/offers/oECqMdng/checkout
+- Euros: https://www.ceramicaconnati.com/offers/qfBBov4x/checkout
+- Dólares: https://www.ceramicaconnati.com/offers/x8vSSLLC/checkout
 - Pesos argentinos: https://www.mercadopago.com.ar/checkout/v1/redirect?pref_id=261682771-18da941e-618e-4007-b9fb-84f0f1fc2243
 
 ## Ciclo Formativo
